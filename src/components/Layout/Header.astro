@@ -1,0 +1,34 @@
+---
+const currLang = 'en'
+const translations = {
+  home: {
+    en: "Home",
+    es: "Inicio",
+  },
+  contacts: {
+    en: "Contacts",
+    es: "Contactos",
+  },
+};
+---
+
+<nav>
+  <a href="/">{translations.home[currLang]}</a>
+  <a href="/contacts">{translations.contacts[currLang]}</a>
+</nav>
+
+<style>
+	nav {
+    padding: 1rem;
+		display: flex;
+    gap: 1rem;
+		justify-content: flex-start;
+	}
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+</style>
+

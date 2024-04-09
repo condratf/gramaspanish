@@ -1,0 +1,38 @@
+---
+import Header from "./Header.astro";
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>grama spanish</title>
+  </head>
+  <body>
+    <Header />
+
+    <div class="content">
+      <slot />
+    </div>
+  </body>
+
+  <style>
+    .content {
+      padding: 1rem;
+    }
+  </style>
+
+  <style is:global>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: sans-serif;
+    }
+    html {height: 100%;}
+    body {height: 100%;}
+  </style>
+</html>
