@@ -1,12 +1,16 @@
 ---
-import Layout from "../components/Layout/Layout.astro";
+import Layout from "../../components/Layout/Layout.astro";
 
 if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
     const name = data.get("username");
     const email = data.get("email");
-    const password = data.get("password");
+    const phone = data.get("phone");
+
+    console.log({
+      name, email, phone
+    })
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
@@ -18,10 +22,10 @@ if (Astro.request.method === "POST") {
 <Layout>
   <div class="container">
     <form method="POST" class="contactForm">
-      <h2>Contact us</h2>
+      <h2>Связаться с нами</h2>
 
       <label>
-        Username:
+        Имя
         <input type="text" name="username" required />
       </label>
       <label>
@@ -29,10 +33,10 @@ if (Astro.request.method === "POST") {
         <input type="email" name="email" required />
       </label>
       <label>
-        Password:
-        <input type="password" name="password" required minlength="6" />
+        Телефон:
+        <input type="tel" name="phone" required />
       </label>
-      <button>Submit</button>
+      <button>Отправить</button>
     </form>
   </div>
 </Layout>

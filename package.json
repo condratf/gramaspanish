@@ -11,7 +11,16 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
+    "@astrojs/netlify": "^5.2.0",
+    "@astrojs/react": "^3.3.0",
+    "@types/react": "^18.2.78",
+    "@types/react-dom": "^18.2.25",
     "astro": "^4.5.17",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "typescript": "^5.4.4"
+  },
+  "devDependencies": {
+    "sass": "^1.75.0"
   }
 }

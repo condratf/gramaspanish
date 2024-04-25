@@ -1,5 +1,9 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import Header from "./Header.astro";
+
+const curr = Astro.url.pathname.split("/");
+const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
 
 ---
 
@@ -12,9 +16,9 @@ import Header from "./Header.astro";
     <title>grama spanish</title>
   </head>
   <body>
-    <Header />
-
+    <Header currLang={currLang} />
     <div class="content">
+      <ViewTransitions />
       <slot />
     </div>
   </body>
@@ -32,7 +36,25 @@ import Header from "./Header.astro";
       padding: 0;
       font-family: sans-serif;
     }
-    html {height: 100%;}
-    body {height: 100%;}
+    html {
+      height: 100%;
+    }
+
+    :root {
+      --body-bg: #fff3e0;
+      --body-bg2: #f0e3d0;
+      --primary-dark: #090909;
+      --yellow-color: #ffc330;
+      --orange-color: #ff6300;
+      --lightorange-color: #ff9900;
+      --white: #ffffff;
+      --black: #090909;
+      --light-purple: #ccd3ff;
+    }
+
+    body {
+      height: 100%;
+      background-color: var(--body-bg);
+    }
   </style>
 </html>
