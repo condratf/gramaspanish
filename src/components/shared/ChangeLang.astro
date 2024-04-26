@@ -1,0 +1,57 @@
+---
+import { Image } from "astro:assets";
+import { getRelativeLocaleUrl } from "astro:i18n";
+import en from "./assets/uk.svg";
+import ru from "./assets/ru.svg";
+import es from "./assets/es.svg";
+
+const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
+---
+
+<div class="changeLang" aria-label="language | lengua | язык" title="language | lengua | язык">
+  <a
+    href={getRelativeLocaleUrl("en", preparedPathName)}
+    title="English"
+    aria-label="English"
+  >
+    <Image width={25} height={17} src={en} alt="lang-en english" />
+  </a>
+  <a
+    href={getRelativeLocaleUrl("ru", preparedPathName)}
+    title="Русский"
+    aria-label="Русский"
+  >
+    <Image width={25} height={17} src={ru} alt="lang-ru русский" />
+  </a>
+  <a
+    href={getRelativeLocaleUrl("es", preparedPathName)}
+    title="Español"
+    aria-label="Español"
+  >
+    <Image width={25} height={17} src={es} alt="lang-es español" />
+  </a>
+</div>
+
+<style lang="scss">
+  .changeLang {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+
+    a {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.1s;
+
+      @media only screen and (max-width: 767px) {
+        zoom: 0.8;
+      }
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+  }
+  
+</style>
