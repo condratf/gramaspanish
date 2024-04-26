@@ -24,7 +24,7 @@ const translations = {
   },
   about: {
     en: "About",
-    es: "Sobre nosotros",
+    es: "Nosotros",
     ru: "О нас",
   },
 };
@@ -87,6 +87,7 @@ const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
     padding: 1rem;
     display: flex;
     justify-content: space-between;
+    background-color: var(--header-bg);
   }
 
   .first {
@@ -113,6 +114,9 @@ const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
       justify-content: center;
       transition: all 0.1s;
 
+      @media only screen and (max-width: 767px) {
+        zoom: 0.8;
+      }
       &:hover {
         opacity: 0.7;
       }

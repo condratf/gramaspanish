@@ -4,7 +4,6 @@ import Header from "./Header.astro";
 
 const curr = Astro.url.pathname.split("/");
 const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
-
 ---
 
 <html lang="en">
@@ -26,6 +25,8 @@ const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
   <style>
     .content {
       padding: 1rem;
+      width: 100%;
+      height: 100%;
     }
   </style>
 
@@ -41,13 +42,15 @@ const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
     }
 
     :root {
-      --body-bg: #fff3e0;
+      --body-bg: #7d1c15f1;
+      --header-bg: #a64b44d8;
       --body-bg2: #f0e3d0;
       --primary-dark: #090909;
       --yellow-color: #ffc330;
       --orange-color: #ff6300;
       --lightorange-color: #ff9900;
       --white: #ffffff;
+      --font-color: #d7d7d7de;
       --black: #090909;
       --light-purple: #ccd3ff;
     }
@@ -55,6 +58,7 @@ const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
     body {
       height: 100%;
       background-color: var(--body-bg);
+      color: var(--font-color);
     }
   </style>
 </html>
