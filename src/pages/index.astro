@@ -1,20 +1,8 @@
 ---
-import Layout from "../components/Layout/Layout.astro";
-import Gato from "../assets/MainPageContent.astro";
+import Main from "src/components/Main/Main.astro";
+import Layout from "src/components/Layout/Layout.astro";
 ---
 
 <Layout>
-  <div class="container">
-    <Gato />
-  </div>
+  <Main />
 </Layout>
-
-<style lang="scss">
-  .container {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-  }
-</style>

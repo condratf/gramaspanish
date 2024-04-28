@@ -1,0 +1,46 @@
+---
+import { getContactsInfo } from "src/resources/contacts";
+import TelegramIcon from "src/assets/TelegramIcon.astro";
+
+const { gmail, instagram, telegram } = getContactsInfo();
+---
+
+<div class="info">
+  <div class="">
+    <span> Mail 📧 </span> - <a target="_blank" href={`mailto:${gmail}`}>
+      {gmail}
+    </a>
+  </div>
+  <div>
+    <span> Instagram 📸 </span> - <a target="_blank" href={instagram}>
+      gramaspanish
+    </a>
+  </div>
+  <div>
+    <span> Telegram <TelegramIcon /> </span> - <a
+      target="_blank"
+      href={telegram}
+    >
+      gramaspanish
+    </a>
+  </div>
+</div>
+
+<style lang="scss">
+  .info {
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    @media only screen and (max-width: 900px) {
+      font-size: 1rem;
+    }
+
+    a {
+      color: inherit;
+    }
+
+  }
+</style>

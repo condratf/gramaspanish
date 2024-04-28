@@ -1,9 +1,9 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Header from "./Header.astro";
+import { getCurrLang } from "src/helpers";
 
-const curr = Astro.url.pathname.split("/");
-const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
+const currLang = getCurrLang(Astro);
 ---
 
 <html lang="en">
@@ -89,9 +89,11 @@ const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
     }
 
     :root {
-      --body-bg: #7d1c15f1;
-      --header-bg: #a64b44d8;
-      --body-bg2: #f0e3d0;
+      /* --body-bg: #7d1c15f1; */
+      --body-bg: #090909;
+      /* --header-bg: #a64b44d8; */
+      --header-bg: #343131d3;
+      --body-bg2: #453f3e;
       --primary-dark: #090909;
       --yellow-color: #ffc330;
       --orange-color: #ff6300;
@@ -106,6 +108,12 @@ const currLang = curr.includes("es") ? "es" : curr.includes("ru") ? "ru" : "en";
       height: 100%;
       background-color: var(--body-bg);
       color: var(--font-color);
+      min-height: 900px;
+    }
+    @media (max-width: 1023px) {
+      astro-view-transitions {
+        display: none !important;
+      }
     }
   </style>
 </html>

@@ -1,4 +1,4 @@
-<fragment>
+<div class="container">
   <svg
     preserveAspectRatio="xMidYMid meet"
     version="1.0"
@@ -17,7 +17,7 @@
   <h1>
     GЯAMA SPANISH
   </h1>
-</fragment>
+</div>
 
 <style lang="scss">
   svg {
@@ -35,15 +35,23 @@
   }
 
   .divider {
-    margin-bottom: 18rem;
+    margin-bottom: 15rem;
+  }
+
+  .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   h1 {
     width: 100%;
     text-align: center;
-    font-size: 11rem;
+    font-size: 9rem;
     color: #fff;
     position: relative;
+    max-width: 1020px;
     @media only screen and (max-width: 767px) {
       font-size: 7rem;
     }

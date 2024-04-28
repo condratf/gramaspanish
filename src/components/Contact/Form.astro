@@ -1,0 +1,104 @@
+---
+import { getCurrLang } from "src/helpers";
+import { getContactFormTranslations } from "src/resources/contacts";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const name = data.get("name");
+    const email = data.get("email");
+    const text = data.get("text");
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+    }
+  }
+}
+const currLang = getCurrLang(Astro);
+const translations = getContactFormTranslations();
+---
+
+<form method="POST">
+  <label>
+    {translations.name[currLang]}:
+    <input type="text" name="name" required />
+  </label>
+  <label>
+    {translations.email[currLang]}:
+    <input type="email" name="email" required />
+  </label>
+  <label>
+    {translations.phone[currLang]}:
+    <input type="tel" name="phone" required />
+  </label>
+  <label>
+    {translations.text[currLang]}:
+    <textarea name="text" required minlength="16"></textarea>
+  </label>
+  <button>
+    {translations.submit[currLang]}
+  </button>
+</form>
+
+<style lang="scss">
+  form {
+    display: flex;
+    flex-direction: column;
+    min-height: 200px;
+    max-width: 500px;
+    width: 100%;
+    min-width: 320px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 0.3rem;
+    gap: 1rem;
+    background-color: var(--body-bg2);
+
+    label {
+      width: 100%;
+      span {
+        font-size: 0.8rem;
+      }
+    }
+
+    input,
+    textarea {
+      background-color: #5d57569e;
+      padding: 0.5rem;
+      outline: none;
+      width: 100%;
+      border: none;
+      margin-top: 0.25rem;
+      color: inherit;
+
+      &::placeholder {
+        color: transparent;
+      }
+    }
+
+    textarea {
+      height: 200px;
+      resize: none;
+    }
+
+    button {
+      padding: 0.5rem;
+      background: #5d57569e;
+      border-radius: 3px;
+      width: 50%;
+      border: none;
+      color: inherit;
+
+      transition: all 0.59s ease 0s;
+
+      &:hover {
+        box-shadow:
+          0 5px 10px rgba(0, 0, 0, 0.09),
+          0 3px 3px rgba(0, 0, 0, 0.13);
+        transform: translateY(-1px);
+        cursor: pointer;
+      }
+    }
+  }
+</style>

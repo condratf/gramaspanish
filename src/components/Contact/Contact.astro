@@ -1,0 +1,36 @@
+---
+import { getCurrLang } from "src/helpers";
+import Form from "./Form.astro";
+import Info from "./Info.astro";
+
+const currLang = getCurrLang(Astro)
+
+const heading = {
+  en: "Contact us",
+  es: "Contactar",
+  ru: "Контакты"
+}
+---
+
+<div class="container">
+  <h2>{heading[currLang]}</h2>
+
+  <Form />
+  <Info />
+  
+</div>
+
+<style lang="scss">
+  .container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  h2 {
+    font-size: 3rem;
+  }
+</style>

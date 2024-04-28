@@ -1,12 +1,9 @@
 ---
 import { getRelativeLocaleUrl } from "astro:i18n";
-import ChangeLang from "../shared/ChangeLang.astro";
+import ChangeLang from "src/components/shared/ChangeLang.astro";
+import { getCurrLang } from "src/helpers";
 
-interface Props {
-  currLang: string;
-}
-
-const currLang = String(Astro.props.currLang || "en") as "en" | "es" | "ru";
+const currLang = getCurrLang(Astro)
 
 const translations = {
   home: {
@@ -15,8 +12,8 @@ const translations = {
     ru: "Главная",
   },
   contacts: {
-    en: "Contacts",
-    es: "Contactos",
+    en: "Contact",
+    es: "Contacto",
     ru: "Контакты",
   },
   about: {
