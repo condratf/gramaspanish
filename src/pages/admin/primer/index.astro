@@ -7,6 +7,8 @@ if (Astro.request.method === 'POST') {
   db.insert(Comment).values([
     { authorId: 1, content: "some comment2" },
   ])
+
+  Astro.response.headers.append('Some', 'some')
 }
 
 ---
