@@ -1,43 +1,14 @@
 ---
-import { db, Text } from "astro:db";
+import TextsList from "src/components/Admin/TextsList.astro";
 import AdminLayout from "src/components/Layout/AdminLayout.astro";
 
 if (!Astro.locals.user) {
-	return Astro.redirect("/admin/login");
+  return Astro.redirect("/");
 }
-
-// if (Astro.request.method === "POST") {
-//   try {
-//     const data = await Astro.request.formData();
-//     const name = String(data.get("name"));
-//     const content = String(data.get("content"));
-
-//     db.insert(Text)
-//       .values({
-//         name,
-//         content,
-//         authorId: 1,
-//       })
-//       .then((res) => console.log({ res }))
-//       .catch((e) => {
-//         console.log({e})
-//       });
-//   } catch (error) {
-//     console.log(error);
-//     if (error instanceof Error) {
-//       console.error(error.message);
-//     }
-//   }
-// }
 ---
 
-<AdminLayout >
+<AdminLayout>
+  <h2> manage </h2>
 
-  <h2>smth</h2>
+  <TextsList />
 </AdminLayout>
-<!-- 
-<form method="post">
-  name: <input type="text" name="name" />
-  content: <input type="text" name="content" />
-  <button type="submit">sbm</button>
-</form> -->

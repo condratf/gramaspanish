@@ -1,0 +1,55 @@
+---
+import { eq } from "astro:db";
+import { db, Text } from "astro:db";
+
+let errorMs;
+let submiting = false;
+
+if (Astro.request.method === "POST" && !submiting) {
+  submiting = true;
+  try {
+    const data = await Astro.request.formData();
+    const name = String(data.get("name"));
+    const content = String(data.get("content"));
+
+    if ((await db.select().from(Text).where(eq(Text.name, name)))[0]) {
+      throw Error('already exists')
+    }
+
+    if (name && content) {
+      await db.insert(Text).values({ content, name, authorId: 1 });
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+      errorMs = error.message;
+    }
+  }
+  finally {
+    submiting = false
+  }
+}
+---
+
+<form method="POST">
+  <input name="name" />
+
+  <textarea name="content"></textarea>
+
+  <button type="submit"> create </button>
+
+  {errorMs && <div class="err">{errorMs}</div>}
+</form>
+
+<style lang="scss">
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    max-width: 500px;
+    padding: 1rem;
+  }
+  .err {
+    color: red;
+  }
+</style>

@@ -1,0 +1,61 @@
+---
+import { db, Text, eq } from 'astro:db';
+
+interface Props {
+  content: string;
+  name: string;
+}
+
+let errorMs;
+let { name, content } = Astro.props;
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    const content = String(data.get("content"));
+
+    if (content) {
+      await db.update(Text)
+        .set({content: content})
+        .where(eq(Text.name, name))
+    }
+
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.message);
+      errorMs = error.message;
+    }
+  }
+}
+---
+
+<form method="POST">
+  <h3 class="name">{name}</h3>
+
+  <textarea name="content">
+    {content}
+  </textarea>
+
+  <button type="submit"> change </button>
+
+  {errorMs && <div class="err">{errorMs}</div>}
+</form>
+
+<style lang="scss">
+  form {
+    max-width: 500px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    border-bottom: 1px solid black;
+
+    textarea {
+      min-height: 150px;
+      min-width: 250px;
+    }
+  }
+  .err {
+    color: red;
+  }
+</style>

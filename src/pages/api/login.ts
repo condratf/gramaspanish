@@ -1,7 +1,7 @@
-import { lucia } from "../../lib/auth";
-import { Argon2id } from "oslo/password";
-import type { APIContext } from "astro";
-import { User, db, eq } from "astro:db";
+import { lucia } from "../../lib/auth"
+import { Argon2id } from "oslo/password"
+import type { APIContext } from "astro"
+import { User, db, eq } from "astro:db"
 
 
 export async function POST(context: APIContext): Promise<Response> {
@@ -24,11 +24,6 @@ export async function POST(context: APIContext): Promise<Response> {
 	}
 
 	const existingUser = (await db.select().from(User).where(eq(User.name, username)))[0]
-  // prepare("SELECT * FROM user WHERE username = ?").get(username)
-
-	console.log({
-		existingUser
-	})
 
 	if (!existingUser) {
 		return new Response(
