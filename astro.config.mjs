@@ -22,7 +22,10 @@ export default defineConfig({
     resolve: {
       alias: {
         'src': '/src'
-      }
-    }
+      },
+    },
+    optimizeDeps: {
+      exclude: ["astro:db"]
+    },
   }
 });

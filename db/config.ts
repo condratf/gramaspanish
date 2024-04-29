@@ -7,14 +7,42 @@ const Author = defineTable({
   }
 });
 
-const Comment = defineTable({
+const Text = defineTable({
   columns: {
-    authorId: column.number({ references: () => Author.columns.id }),
+    name: column.text(),
     content: column.text(),
+    authorId: column.number({ references: () => Author.columns.id }),
+  }
+});
+
+const User = defineTable({
+  columns: {
+    id: column.text({
+      primaryKey: true
+    }),
+    name: column.text(),
+    password: column.text()
+  }
+});
+
+const Session = defineTable({
+  columns: {
+    id: column.text({
+      primaryKey: true
+    }),
+    expiresAt: column.date(),
+    userId: column.text({
+      references: () => User.columns.id
+    })
   }
 });
 
 // https://astro.build/db/config
 export default defineDb({
-  tables: { Author, Comment }
+  tables: {
+    Author,
+    Text,
+    User,
+    Session
+  }
 });

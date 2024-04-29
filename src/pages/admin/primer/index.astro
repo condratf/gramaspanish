@@ -1,30 +1,43 @@
 ---
-import { db, Author, Comment } from "astro:db";
+import { db, Text } from "astro:db";
+import AdminLayout from "src/components/Layout/AdminLayout.astro";
 
-const comments = await db.select().from(Comment);
-
-if (Astro.request.method === 'POST') {
-  db.insert(Comment).values([
-    { authorId: 1, content: "some comment2" },
-  ])
-
-  Astro.response.headers.append('Some', 'some')
+if (!Astro.locals.user) {
+	return Astro.redirect("/admin/login");
 }
 
+// if (Astro.request.method === "POST") {
+//   try {
+//     const data = await Astro.request.formData();
+//     const name = String(data.get("name"));
+//     const content = String(data.get("content"));
+
+//     db.insert(Text)
+//       .values({
+//         name,
+//         content,
+//         authorId: 1,
+//       })
+//       .then((res) => console.log({ res }))
+//       .catch((e) => {
+//         console.log({e})
+//       });
+//   } catch (error) {
+//     console.log(error);
+//     if (error instanceof Error) {
+//       console.error(error.message);
+//     }
+//   }
+// }
 ---
 
-<h2>Comments</h2>
+<AdminLayout >
 
-{
-  comments.map(({ authorId, content }) => (
-    <article>
-      <p>Author: {authorId}</p>
-      <p>{content}</p>
-    </article>
-  ))
-}
-
-<form method="POST">
+  <h2>smth</h2>
+</AdminLayout>
+<!-- 
+<form method="post">
+  name: <input type="text" name="name" />
+  content: <input type="text" name="content" />
   <button type="submit">sbm</button>
-</form>
-
+</form> -->

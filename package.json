@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
+    "dev-db": "astro dev --remote",
     "start": "astro dev",
     "build": "astro check && astro build --remote",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "db-ex-remote": "astro db execute db/seed.ts --remote"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.10",
@@ -17,6 +19,8 @@
     "@types/react": "^18.2.78",
     "@types/react-dom": "^18.2.25",
     "astro": "^4.5.17",
+    "lucia": "^3.2.0",
+    "lucia-adapter-astrodb": "^0.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5.4.4"
