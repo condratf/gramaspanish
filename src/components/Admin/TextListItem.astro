@@ -2,21 +2,25 @@
 import { db, Text, eq } from 'astro:db';
 
 interface Props {
-  content: string;
   name: string;
+  content: string;
+  contentEs?: string | null;
+  contentRu?: string | null;
 }
 
 let errorMs;
-let { name, content } = Astro.props;
+let { name, content, contentEs, contentRu } = Astro.props;
 
 if (Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
     const content = String(data.get("content"));
+    const contentRu = String(data.get("contentRu")) || null;
+    const contentEs = String(data.get("contentEs")) || null;
 
     if (content) {
       await db.update(Text)
-        .set({content: content})
+        .set({content, contentRu, contentEs})
         .where(eq(Text.name, name))
     }
 
@@ -32,9 +36,20 @@ if (Astro.request.method === "POST") {
 <form method="POST">
   <h3 class="name">{name}</h3>
 
-  <textarea name="content">
-    {content}
-  </textarea>
+  <div class="texts">
+    <label>
+      en
+      <textarea name="content">{content}</textarea>
+    </label>
+    <label>
+      ru
+      <textarea name="contentRu">{contentEs}</textarea>
+    </label>
+    <label>
+      es
+      <textarea name="contentEs">{contentRu}</textarea>
+    </label>
+  </div>
 
   <button type="submit"> change </button>
 
@@ -43,16 +58,31 @@ if (Astro.request.method === "POST") {
 
 <style lang="scss">
   form {
-    max-width: 500px;
     padding: 1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0.7rem;
     border-bottom: 1px solid black;
 
     textarea {
       min-height: 150px;
       min-width: 250px;
+      resize: none;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .texts {
+      display: flex;
+      gap: 1rem;
+    }
+
+    button {
+      max-width: 300px;
+      cursor: pointer;
     }
   }
   .err {

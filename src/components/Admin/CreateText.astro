@@ -11,30 +11,47 @@ if (Astro.request.method === "POST" && !submiting) {
     const data = await Astro.request.formData();
     const name = String(data.get("name"));
     const content = String(data.get("content"));
+    const contentRu = String(data.get("contentRu")) || null;
+    const contentEs = String(data.get("contentEs")) || null;
 
     if ((await db.select().from(Text).where(eq(Text.name, name)))[0]) {
-      throw Error('already exists')
+      throw Error("already exists");
     }
 
     if (name && content) {
-      await db.insert(Text).values({ content, name, authorId: 1 });
+      await db
+        .insert(Text)
+        .values({ content, name, authorId: 1, contentRu, contentEs });
     }
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
       errorMs = error.message;
     }
-  }
-  finally {
-    submiting = false
+  } finally {
+    submiting = false;
   }
 }
 ---
 
 <form method="POST">
+  <label>name</label>
   <input name="name" />
 
-  <textarea name="content"></textarea>
+  <div>
+    <label>
+      en
+      <textarea name="content"></textarea>
+    </label>
+    <label>
+      ru
+      <textarea name="contentRu"></textarea>
+    </label>
+    <label>
+      es
+      <textarea name="contentEs"></textarea>
+    </label>
+  </div>
 
   <button type="submit"> create </button>
 
@@ -48,6 +65,17 @@ if (Astro.request.method === "POST" && !submiting) {
     gap: 0.3rem;
     max-width: 500px;
     padding: 1rem;
+
+    textarea {
+      min-height: 150px;
+      min-width: 250px;
+      resize: none;
+    }
+
+    label {
+      display: flex;
+      flex-direction: column;
+    }
   }
   .err {
     color: red;

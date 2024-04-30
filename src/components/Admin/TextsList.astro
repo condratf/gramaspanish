@@ -6,6 +6,8 @@ import TextListItem from "./TextListItem.astro";
 let texts = [] as {
   name: string;
   content: string;
+  contentEs?: string | null;
+  contentRu?: string | null;
   authorId: number;
 }[];
 
@@ -18,8 +20,13 @@ try {
 
 <div class="container">
   {
-    texts.map(({ content, name }) => (
-      <TextListItem content={content} name={name} />
+    texts.map(({ content, name, contentEs, contentRu }) => (
+      <TextListItem
+        content={content}
+        name={name}
+        contentEs={contentEs}
+        contentRu={contentRu}
+      />
     ))
   }
 </div>

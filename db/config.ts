@@ -11,6 +11,8 @@ const Text = defineTable({
   columns: {
     name: column.text(),
     content: column.text(),
+    contentRu: column.text({optional: true}),
+    contentEs: column.text({optional: true}),
     authorId: column.number({ references: () => Author.columns.id }),
   }
 });
