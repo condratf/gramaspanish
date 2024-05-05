@@ -1,9 +1,32 @@
 ---
 import MainPageContent from "./MainPageContent.astro";
+import { db } from "astro:db";
+import { Text } from "astro:db";
+import { eq } from "astro:db";
+import { getCurrLang } from "src/helpers";
+import { Lang } from "src/types";
+
+const mainText = (
+  await db
+    .selectDistinct()
+    .from(Text)
+    .where(
+      eq(Text.name, "main")
+    )
+)[0];
+
+const content = {
+  [Lang.en]: mainText.content,
+  [Lang.ru]: mainText.contentRu,
+  [Lang.es]: mainText.contentEs,
+}[getCurrLang(Astro)]
+
 ---
 
 <div class="container">
   <MainPageContent />
+
+  {content}
 </div>
 
 <style lang="scss">

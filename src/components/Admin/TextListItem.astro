@@ -11,11 +11,18 @@ interface Props {
 let errorMs;
 let { name, content, contentEs, contentRu } = Astro.props;
 
-if (Astro.request.method === "POST") {
+let isDisabled = false;
+
+if (isDisabled ) {
+  Astro.redirect('/admin/primer')
+}
+
+if (!isDisabled && Astro.request.method === "POST") {
   try {
     const data = await Astro.request.formData();
     const content = String(data.get("content"));
     const contentRu = String(data.get("contentRu")) || null;
+
     const contentEs = String(data.get("contentEs")) || null;
 
     if (content) {
@@ -30,10 +37,13 @@ if (Astro.request.method === "POST") {
       errorMs = error.message;
     }
   }
+  finally {
+    isDisabled = true
+  }
 }
 ---
 
-<form method="POST">
+<form method="POST" accept-charset="UTF-8">
   <h3 class="name">{name}</h3>
 
   <div class="texts">
@@ -42,16 +52,16 @@ if (Astro.request.method === "POST") {
       <textarea name="content">{content}</textarea>
     </label>
     <label>
-      ru
-      <textarea name="contentRu">{contentEs}</textarea>
+      es
+      <textarea name="contentEs">{contentEs}</textarea>
     </label>
     <label>
-      es
-      <textarea name="contentEs">{contentRu}</textarea>
+      ru
+      <textarea name="contentRu" >{contentRu}</textarea>
     </label>
   </div>
 
-  <button type="submit"> change </button>
+  <button disabled={isDisabled} type="submit"> change </button>
 
   {errorMs && <div class="err">{errorMs}</div>}
 </form>

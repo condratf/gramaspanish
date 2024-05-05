@@ -3,13 +3,13 @@ import { Text } from "astro:db";
 import { db } from "astro:db";
 import TextListItem from "./TextListItem.astro";
 
-let texts = [] as {
+let texts = [] as Array<{
   name: string;
   content: string;
   contentEs?: string | null;
   contentRu?: string | null;
   authorId: number;
-}[];
+}>;
 
 try {
   texts = await db.select().from(Text);
@@ -22,8 +22,8 @@ try {
   {
     texts.map(({ content, name, contentEs, contentRu }) => (
       <TextListItem
-        content={content}
         name={name}
+        content={content}
         contentEs={contentEs}
         contentRu={contentRu}
       />

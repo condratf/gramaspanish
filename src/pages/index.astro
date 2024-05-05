@@ -1,19 +1,10 @@
 ---
 import Main from "src/components/Main/Main.astro";
 import Layout from "src/components/Layout/Layout.astro";
-import { db } from "astro:db";
-import { Text } from "astro:db";
-import { eq } from "astro:db";
-
-const mainText = (
-  await db.select().from(Text).where(eq(Text.name, "main-en"))
-)[0];
 ---
 
 <Layout>
   <Main />
-
-  {mainText && <section>{mainText.content}</section>}
 </Layout>
 
 <style lang="scss">

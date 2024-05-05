@@ -9,7 +9,7 @@ const Author = defineTable({
 
 const Text = defineTable({
   columns: {
-    name: column.text(),
+    name: column.text({unique: true}),
     content: column.text(),
     contentRu: column.text({optional: true}),
     contentEs: column.text({optional: true}),

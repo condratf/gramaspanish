@@ -6,9 +6,10 @@ import { getCurrLang } from "src/helpers";
 const currLang = getCurrLang(Astro);
 ---
 
+<ViewTransitions />
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8">
     <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
     <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
     <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
@@ -63,7 +64,6 @@ const currLang = getCurrLang(Astro);
   <body>
     <Header currLang={currLang} />
     <div class="content">
-      <ViewTransitions />
       <slot />
     </div>
   </body>
