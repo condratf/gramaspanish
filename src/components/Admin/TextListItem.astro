@@ -1,5 +1,5 @@
 ---
-import { db, Text, eq } from 'astro:db';
+import { db, Text, eq } from "astro:db";
 
 interface Props {
   name: string;
@@ -13,8 +13,8 @@ let { name, content, contentEs, contentRu } = Astro.props;
 
 let isDisabled = false;
 
-if (isDisabled ) {
-  Astro.redirect('/admin/primer')
+if (isDisabled) {
+  Astro.redirect("/admin/primer");
 }
 
 if (!isDisabled && Astro.request.method === "POST") {
@@ -26,45 +26,53 @@ if (!isDisabled && Astro.request.method === "POST") {
     const contentEs = String(data.get("contentEs")) || null;
 
     if (content) {
-      await db.update(Text)
-        .set({content, contentRu, contentEs})
-        .where(eq(Text.name, name))
+      await db
+        .update(Text)
+        .set({ content, contentRu, contentEs })
+        .where(eq(Text.name, name));
     }
-
   } catch (error) {
     if (error instanceof Error) {
       console.error(error.message);
       errorMs = error.message;
     }
-  }
-  finally {
-    isDisabled = true
+  } finally {
+    isDisabled = true;
   }
 }
 ---
 
-<form method="POST" accept-charset="UTF-8">
-  <h3 class="name">{name}</h3>
+{
+  isDisabled ? (
+    <a href="/admin/primer">return</a>
+  ) : (
+    <form method="POST" accept-charset="UTF-8">
+      <h3 class="name">{name}</h3>
 
-  <div class="texts">
-    <label>
-      en
-      <textarea name="content">{content}</textarea>
-    </label>
-    <label>
-      es
-      <textarea name="contentEs">{contentEs}</textarea>
-    </label>
-    <label>
-      ru
-      <textarea name="contentRu" >{contentRu}</textarea>
-    </label>
-  </div>
+      <div class="texts">
+        <label>
+          en
+          <textarea name="content">{content}</textarea>
+        </label>
+        <label>
+          es
+          <textarea name="contentEs">{contentEs}</textarea>
+        </label>
+        <label>
+          ru
+          <textarea name="contentRu">{contentRu}</textarea>
+        </label>
+      </div>
 
-  <button disabled={isDisabled} type="submit"> change </button>
+      <button disabled={isDisabled} type="submit">
+        {" "}
+        change{" "}
+      </button>
 
-  {errorMs && <div class="err">{errorMs}</div>}
-</form>
+      {errorMs && <div class="err">{errorMs}</div>}
+    </form>
+  )
+}
 
 <style lang="scss">
   form {
