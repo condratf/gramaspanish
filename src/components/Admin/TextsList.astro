@@ -1,7 +1,6 @@
 ---
 import { Text } from "astro:db";
 import { db } from "astro:db";
-import TextListItem from "./TextListItem.astro";
 
 let texts = [] as Array<{
   name: string;
@@ -20,13 +19,16 @@ try {
 
 <div class="container">
   {
-    texts.map(({ content, name, contentEs, contentRu }) => (
-      <TextListItem
-        name={name}
-        content={content}
-        contentEs={contentEs}
-        contentRu={contentRu}
-      />
+    texts.map(({ name, content }) => (
+      <div class="item">
+        <h3>{name}</h3>
+        <div class="preview">
+          <p>{content}</p>
+        </div>
+        <a href={`/admin/primer/change?name=${name}`}>
+          <button>change</button>
+        </a>
+      </div>
     ))
   }
 </div>
@@ -37,6 +39,25 @@ try {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 0.5rem;
+    width: 100%;
+  }
+
+  .item {
+    width: 100%;
+    margin-bottom: 3rem;
+  }
+
+  button {
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+
+  .preview {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+    p {
+      font-size: 0.7rem;
+    }
   }
 </style>

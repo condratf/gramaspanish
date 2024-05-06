@@ -8,7 +8,12 @@ import es from "./assets/es.svg";
 const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
 ---
 
-<div class="changeLang" aria-label="language | lengua | язык" title="language | lengua | язык">
+<div
+  class="changeLang"
+  aria-label="language | lengua | язык"
+  title="language | lengua | язык"
+  role="group"
+>
   <a
     href={getRelativeLocaleUrl("en", preparedPathName)}
     title="English"
@@ -53,5 +58,4 @@ const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
       }
     }
   }
-  
 </style>

@@ -1,0 +1,22 @@
+---
+import { Text } from "astro:db";
+import { eq } from "astro:db";
+import { db } from "astro:db";
+import TextListItem from "src/components/Admin/TextListItem.astro";
+import AdminLayout from "src/components/Layout/AdminLayout.astro";
+
+const currText = Astro.url.searchParams.get("name")! || "";
+const { name, content, contentEs, contentRu } = (
+  await db.select().from(Text).where(eq(Text.name, currText))
+)[0];
+---
+
+<AdminLayout>
+  <TextListItem
+    name={name}
+    content={content}
+    contentEs={contentEs}
+    contentRu={contentRu}
+  />
+</AdminLayout>
+

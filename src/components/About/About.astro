@@ -1,0 +1,51 @@
+---
+import { getCurrLang } from "src/helpers";
+import { getAboutPageTranslations, getAboutTexts } from "src/resources/about";
+
+const currLang = getCurrLang(Astro);
+const { title, goals } = getAboutPageTranslations();
+const { top, bottom, points } = await getAboutTexts();
+---
+
+<div class="container">
+  <h1>{title[currLang]}</h1>
+
+  <p>
+    {top[currLang]}
+  </p>
+
+  <p>
+    {bottom[currLang]}
+  </p>
+
+  <section>
+    <h3>{goals[currLang]}</h3>
+
+    <ul>
+      {
+        points[currLang]
+          .split("\\n")
+          .map((text) => <li>{text.trim()}</li>)
+      }
+    </ul>
+  </section>
+</div>
+
+<style lang="scss">
+  h1 {
+    margin-bottom: 2rem;
+  }
+
+  h3 {
+    margin-bottom: 1rem;
+  }
+
+  p {
+    max-width: 70rem;
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    padding: 0.5rem;
+  }
+</style>

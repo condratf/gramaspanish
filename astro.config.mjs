@@ -15,7 +15,10 @@ export default defineConfig({
     locales: ["es", "en", "ru"],
     fallback: {
       ru: "en",
-      es: "en"
+      es: "en",
+    },
+    routing: {
+      prefixDefaultLocale: true
     }
   },
   vite: {
