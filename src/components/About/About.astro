@@ -22,11 +22,7 @@ const { top, bottom, points } = await getAboutTexts();
     <h3>{goals[currLang]}</h3>
 
     <ul>
-      {
-        points[currLang]
-          .split("\\n")
-          .map((text) => <li>{text.trim()}</li>)
-      }
+      {points[currLang].split("\\n").map((text) => <li>{text.trim()}</li>)}
     </ul>
   </section>
 </div>

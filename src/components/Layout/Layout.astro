@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import Header from "./Header.astro";
+import Colors from "./Colors.astro";
 import { getCurrLang } from "src/helpers";
 
 const currLang = getCurrLang(Astro);
@@ -68,6 +69,8 @@ const currLang = getCurrLang(Astro);
     </div>
   </body>
 
+  <Colors />
+
   <style>
     .content {
       padding: 1rem;
@@ -86,22 +89,6 @@ const currLang = getCurrLang(Astro);
     }
     html {
       height: 100%;
-    }
-
-    :root {
-      /* --body-bg: #7d1c15f1; */
-      --body-bg: #090909;
-      /* --header-bg: #a64b44d8; */
-      --header-bg: #343131d3;
-      --body-bg2: #453f3e;
-      --primary-dark: #090909;
-      --yellow-color: #ffc330;
-      --orange-color: #ff6300;
-      --lightorange-color: #ff9900;
-      --white: #ffffff;
-      --font-color: #d7d7d7de;
-      --black: #090909;
-      --light-purple: #ccd3ff;
     }
 
     body {

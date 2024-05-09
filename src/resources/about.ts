@@ -15,7 +15,29 @@ export function getAboutPageTranslations() {
   })
 }
 
+let isFetching = false
+let res = {
+  top: {
+    en: '',
+    es: '',
+    ru: '',
+  },
+  bottom: {
+    en: '',
+    es: '',
+    ru: '',
+  },
+  points: {
+    en: '',
+    es: '',
+    ru: '',
+  },
+}
+
 export async function getAboutTexts() {
+  if (isFetching) return res
+  isFetching = true
+
   const about = await db
     .select()
     .from(Text)
@@ -27,7 +49,9 @@ export async function getAboutTexts() {
   const bottom = about.find(v => v.name.includes('bottom'))
   const points = about.find(v => v.name.includes('points'))
 
-  return ({
+  isFetching = false
+
+  return res = ({
     top: {
       en: top?.content || '',
       es: top?.contentEs || '',
