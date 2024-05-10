@@ -1,0 +1,48 @@
+---
+import { Image } from "astro:assets";
+
+const sections = Array.from({ length: 7 })
+  .fill({
+    imgSrc: "/assets/cat.jpg",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ut odit. Quaerat voluptatum ut rem.",
+  })
+  .map((_, i) => ({
+    imgSrc: `/assets/photo_${i + 7}.jpg`,
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ut odit. Quaerat voluptatum ut rem.",
+  }));
+---
+
+<div class="container">
+  {
+    sections.map(({ imgSrc, text }) => (
+      <section>
+        <Image width={200} height={200} alt="section img" src={imgSrc} />
+        <p>{text}</p>
+      </section>
+    ))
+  }
+</div>
+
+<style lang="scss">
+  .container {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, transparent, var(--header-bg));
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 15rem;
+    padding-bottom: 10rem;
+  }
+
+  section {
+    display: flex;
+    gap: 0.5rem;
+    padding: 1rem;
+    background: white;
+    max-width: 500px;
+    min-height: 200px;
+    border-radius: 1rem;
+  }
+</style>

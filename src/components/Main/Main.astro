@@ -5,6 +5,7 @@ import { Text } from "astro:db";
 import { eq } from "astro:db";
 import { getCurrLang } from "src/helpers";
 import { Lang } from "src/types";
+import Bottom from "./Bottom.astro";
 
 const mainText = (
   await db
@@ -30,6 +31,8 @@ const content = {
     {content}
   </p>
 
+  <Bottom />
+
 </div>
 
 <style lang="scss">
@@ -45,5 +48,6 @@ const content = {
     padding: 1rem;
     text-align: center;
     font-size: 2rem;
+    margin-bottom: 1rem;
   }
 </style>
