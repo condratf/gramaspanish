@@ -2,52 +2,26 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import ChangeLang from "src/components/shared/ChangeLang.astro";
 import { getCurrLang } from "src/helpers";
+import { getHeaderItems } from "src/resources/header";
 
-const currLang = getCurrLang(Astro)
-
-const translations = {
-  home: {
-    en: "Home",
-    es: "Inicio",
-    ru: "Главная",
-  },
-  contacts: {
-    en: "Contact",
-    es: "Contacto",
-    ru: "Контакты",
-  },
-  about: {
-    en: "About",
-    es: "Nosotros",
-    ru: "О нас",
-  },
-};
+const currLang = getCurrLang(Astro);
+const headerItems = getHeaderItems();
 ---
 
 <nav>
-  <div class="first">
-    <a
-      title={translations.home[currLang]}
-      aria-label={translations.home[currLang]}
-      href={getRelativeLocaleUrl(currLang, "/")}
-      tabindex="0"
-    >
-      {translations.home[currLang]}
-    </a>
-    <a
-      title={translations.contacts[currLang]}
-      aria-label={translations.contacts[currLang]}
-      href={getRelativeLocaleUrl(currLang, "/contacts")}
-    >
-      {translations.contacts[currLang]}
-    </a>
-    <a
-      title={translations.about[currLang]}
-      aria-label={translations.about[currLang]}
-      href={getRelativeLocaleUrl(currLang, "/about")}
-    >
-      {translations.about[currLang]}
-    </a>
+  <div class="headerItems">
+    {
+      Object.values(headerItems).map(({ translations, href }) => (
+        <a
+          title={translations[currLang]}
+          aria-label={translations[currLang]}
+          href={getRelativeLocaleUrl(currLang, href)}
+          tabindex="0"
+        >
+          {translations[currLang]}
+        </a>
+      ))
+    }
   </div>
 
   <ChangeLang />
@@ -55,13 +29,15 @@ const translations = {
 
 <style lang="scss">
   nav {
-    padding: 1rem;
+    padding: 1.3rem;
+    padding-bottom: 1.5rem;
     display: flex;
     justify-content: space-between;
     background-color: var(--header-bg);
+    box-shadow: 1px 7px 12px 2px rgba(0,0,0,0.12);
   }
 
-  .first {
+  .headerItems {
     display: flex;
     gap: 1rem;
     justify-content: flex-start;
@@ -74,27 +50,6 @@ const translations = {
     font-size: 1.2rem;
     &:hover {
       opacity: 0.8;
-    }
-  }
-
-  .changeLang {
-    display: flex;
-    gap: 1rem;
-    justify-content: flex-start;
-
-    a {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.1s;
-
-      @media only screen and (max-width: 767px) {
-        zoom: 0.8;
-      }
-      &:hover {
-        opacity: 0.7;
-      }
     }
   }
 </style>

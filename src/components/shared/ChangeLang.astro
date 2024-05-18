@@ -1,11 +1,9 @@
 ---
-import { Image } from "astro:assets";
 import { getRelativeLocaleUrl } from "astro:i18n";
-import en from "./assets/uk.svg";
-import ru from "./assets/ru.svg";
-import es from "./assets/es.svg";
+import { getLanguageItems } from "src/resources/header";
 
 const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
+const languageItems = getLanguageItems();
 ---
 
 <div
@@ -14,36 +12,25 @@ const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
   title="language | lengua | язык"
   role="group"
 >
-  <a
-    href={getRelativeLocaleUrl("en", preparedPathName)}
-    title="English"
-    aria-label="English"
-  >
-    <span>en</span>
-    <Image width={25} height={17} src={en} alt="lang-en english" />
-  </a>
-  <a
-    href={getRelativeLocaleUrl("ru", preparedPathName)}
-    title="Русский"
-    aria-label="Русский"
-  >
-    <span>ру</span>
-    <Image width={25} height={17} src={ru} alt="lang-ru русский" />
-  </a>
-  <a
-    href={getRelativeLocaleUrl("es", preparedPathName)}
-    title="Español"
-    aria-label="Español"
-  >
-    <span>es</span>
-    <Image width={25} height={17} src={es} alt="lang-es español" />
-  </a>
+  {
+    Object.values(languageItems)
+      .map(({ image, title, short, lang }) => (
+        <a
+          href={getRelativeLocaleUrl(lang, preparedPathName)}
+          title={title}
+          aria-label={title}
+        >
+          <span>{short}</span>
+          <img width={25} height={17} src={image.src} alt={`lang-${lang}`} />
+        </a>
+      ))
+  }
 </div>
 
 <style lang="scss">
   .changeLang {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     justify-content: flex-start;
     zoom: 0.8;
 
@@ -53,6 +40,7 @@ const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
       align-items: center;
       justify-content: center;
       transition: all 0.1s;
+      opacity: 0.88;
 
       @media only screen and (max-width: 767px) {
         zoom: 0.8;
@@ -73,7 +61,7 @@ const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
       }
 
       &:hover {
-        opacity: 0.7;
+        opacity: 1;
       }
     }
   }

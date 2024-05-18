@@ -1,11 +1,9 @@
 ---
-import MainPageContent from "./MainPageContent.astro";
-import { db } from "astro:db";
-import { Text } from "astro:db";
-import { eq } from "astro:db";
-import { getCurrLang } from "src/helpers";
-import { Lang } from "src/types";
-import Bottom from "./Bottom.astro";
+import MainPageContent from "./MainPageContent.astro"
+import { db, Text, eq } from "astro:db"
+import { getCurrLang } from "src/helpers"
+import { Lang } from "src/types"
+import Bottom from "./Bottom.astro"
 
 const mainText = (
   await db
@@ -27,7 +25,7 @@ const content = {
 <div class="container">
   <MainPageContent />
 
-  <p class="content">
+  <p class="mainText">
     {content}
   </p>
 
@@ -44,7 +42,7 @@ const content = {
     overflow: hidden;
   }
 
-  .content {
+  .mainText {
     padding: 1rem;
     text-align: center;
     font-size: 2rem;

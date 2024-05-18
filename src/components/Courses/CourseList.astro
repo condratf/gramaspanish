@@ -1,0 +1,21 @@
+---
+import { getCoursesData } from "src/resources/courses"
+import CourseItem from "./CourseItem.astro"
+
+const courses = await getCoursesData()
+---
+
+<div class="container">
+  {courses.map((item) => (
+    <CourseItem {...item}/>
+  ))}
+</div>
+
+<style lang="scss">
+  .container {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+</style>

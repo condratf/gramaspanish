@@ -3,7 +3,6 @@ import { Argon2id } from "oslo/password"
 import type { APIContext } from "astro"
 import { User, db, eq } from "astro:db"
 
-
 export async function POST(context: APIContext): Promise<Response> {
 	const formData = await context.request.formData();
 	const username = formData.get("username");

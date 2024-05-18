@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    id: number;
+    title: string;
+    description: string;
+    quantity: string;
+    price: string;
+}
+
+const {
+  title, description, quantity, price
+} = Astro.props
+
+---
+
+<div class="container" >
+  <h2>{title}</h2>
+
+  <Image width={700} height={500} alt="section img" src="/assets/lrn.avif" />
+
+  <p>{description}</p>
+
+  <div>{quantity}</div>
+
+  <span>{price}</span>
+
+  <button>
+    purchase course
+  </button>
+</div>
+
+<style lang="scss">
+.container {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  button {
+    cursor: pointer;
+  }
+}
+</style>

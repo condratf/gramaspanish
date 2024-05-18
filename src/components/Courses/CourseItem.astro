@@ -1,0 +1,64 @@
+---
+import { getRelativeLocaleUrl } from 'astro:i18n';
+import { getCurrLang } from 'src/helpers';
+
+const currLang = getCurrLang(Astro);
+
+interface Props {
+  id: number;
+  title: string;
+  description: string;
+  quantity: string;
+  price: string;
+}
+
+const { title, description, quantity, price, id } = Astro.props;
+---
+
+<a href={getRelativeLocaleUrl(currLang, `courses/${id}`)}>
+  <section class="container">
+    <h3>{title}</h3>
+
+    <p>{description}</p>
+
+    <div>{quantity}</div>
+
+    <span>{price}</span>
+  </section>
+</a>
+
+<style lang="scss">
+  a {
+    color: unset;
+    text-decoration: unset;
+    font-weight: unset;
+  }
+
+  section {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 1rem;
+    max-width: 29rem;
+    background-color: var(--itemColor);
+    cursor: pointer;
+    transition: all 0.1s ease-in-out;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-0.02rem);
+    }
+
+    div {
+      font-size: 1.2rem;
+    }
+    span {
+      margin-left: auto;
+      padding-right: 1rem;
+    }
+  }
+</style>

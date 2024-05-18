@@ -1,0 +1,63 @@
+---
+import { getRelativeLocaleUrl } from "astro:i18n";
+import { getHeaderItems } from "src/resources/header";
+import type { Lang } from "src/types";
+import ChangeLang from "../shared/ChangeLang.astro";
+
+const locale = (Astro.currentLocale || "en") as Lang;
+const headerItems = getHeaderItems();
+---
+
+<footer>
+  <div class="footerItems">
+    {
+      Object.values(headerItems).map(({ translations, href }) => (
+        <a
+          title={translations[locale]}
+          aria-label={translations[locale]}
+          href={getRelativeLocaleUrl(locale, href)}
+          tabindex="0"
+        >
+          {translations[locale]}
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="changeLang">
+    <ChangeLang />
+  </div>
+</footer>
+
+<style lang="scss">
+  footer {
+    width: 100%;
+    min-height: 300px;
+    background-color: var(--header-bg);
+    box-shadow: 1px -4px 12px 2px rgba(0, 0, 0, 0.11);
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footerItems {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    font-size: 1.2rem;
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+  .changeLang {
+    align-self: flex-end;
+  }
+</style>
