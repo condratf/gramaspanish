@@ -1,0 +1,34 @@
+---
+interface Props {
+  content: string;
+  name: string;
+  rating: number;
+}
+
+const { content, name, rating } = Astro.props;
+---
+
+<div class="container">
+  <img alt="alumno" />
+  <div>
+    <h3>{name}</h3>
+    <p>
+      {content}
+    </p>
+
+    <section>{rating}</section>
+  </div>
+</div>
+
+<style lang="scss">
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    border: 1px solid black;
+    border-radius: 1rem;
+    padding: 1rem;
+    min-width: 25rem;
+  }
+</style>

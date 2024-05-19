@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  imgSrc: string;
+  text: string;
+}
+
+const { imgSrc, text } = Astro.props;
+---
+
+<section>
+  <Image width={200} height={200} alt="section img" src={imgSrc} />
+  <p>{text}</p>
+</section>
+
+<style lang="scss">
+  section {
+    gap: 1.2rem;
+    padding: 1rem;
+    max-width: 500px;
+    min-height: 200px;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    background: #38434f;
+    color: white;
+    cursor: pointer;
+
+    img {
+      border-radius: 1rem;
+    }
+  }
+</style>

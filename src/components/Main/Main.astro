@@ -1,25 +1,20 @@
 ---
-import MainPageContent from "./MainPageContent.astro"
-import { db, Text, eq } from "astro:db"
-import { getCurrLang } from "src/helpers"
-import { Lang } from "src/types"
-import Bottom from "./Bottom.astro"
+import MainPageContent from "./MainPageContent.astro";
+import { db, Text, eq } from "astro:db";
+import { getCurrLang } from "src/helpers";
+import { Lang } from "src/types";
+import Services from "./Services.astro";
+import Reviews from "./Reviews.astro";
 
 const mainText = (
-  await db
-    .selectDistinct()
-    .from(Text)
-    .where(
-      eq(Text.name, "main")
-    )
+  await db.selectDistinct().from(Text).where(eq(Text.name, "main"))
 )[0];
 
 const content = {
   [Lang.en]: mainText.content,
   [Lang.ru]: mainText.contentRu,
   [Lang.es]: mainText.contentEs,
-}[getCurrLang(Astro)]
-
+}[getCurrLang(Astro)];
 ---
 
 <div class="container">
@@ -29,7 +24,9 @@ const content = {
     {content}
   </p>
 
-  <Bottom />
+  <Services />
+
+  <Reviews />
 
 </div>
 
@@ -40,12 +37,13 @@ const content = {
     width: 100%;
     min-height: 590px;
     overflow: hidden;
+    padding-top: 5rem;
   }
 
   .mainText {
     padding: 1rem;
     text-align: center;
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: 5rem;
+    margin-bottom: 23rem;
   }
 </style>

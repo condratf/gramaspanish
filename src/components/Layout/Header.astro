@@ -1,10 +1,9 @@
 ---
-import { getRelativeLocaleUrl } from "astro:i18n";
 import ChangeLang from "src/components/shared/ChangeLang.astro";
-import { getCurrLang } from "src/helpers";
 import { getHeaderItems } from "src/resources/header";
+import type { Lang } from "src/types";
 
-const currLang = getCurrLang(Astro);
+const currLang = (Astro.currentLocale || "en") as Lang;
 const headerItems = getHeaderItems();
 ---
 
@@ -15,8 +14,9 @@ const headerItems = getHeaderItems();
         <a
           title={translations[currLang]}
           aria-label={translations[currLang]}
-          href={getRelativeLocaleUrl(currLang, href)}
+          href={`/${currLang}${href}`}
           tabindex="0"
+          data-astro-prefetch
         >
           {translations[currLang]}
         </a>
@@ -45,11 +45,12 @@ const headerItems = getHeaderItems();
 
   a {
     text-decoration: none;
-    color: inherit;
+    color: var(--light-purple);
     cursor: pointer;
     font-size: 1.2rem;
+    opacity: 0.9;
     &:hover {
-      opacity: 0.8;
+      opacity: 1;
     }
   }
 </style>

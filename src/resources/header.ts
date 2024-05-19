@@ -12,14 +12,6 @@ export const getHeaderItems = () => {
       },
       href: '/'
     },
-    contacts: {
-      translations: {
-        en: "Contact",
-        es: "Contacto",
-        ru: "Контакты",
-      },
-      href: '/contacts'
-    },
     about: {
       translations: {
         en: "About",
@@ -27,6 +19,14 @@ export const getHeaderItems = () => {
         ru: "О нас",
       },
       href: '/about'
+    },
+    contacts: {
+      translations: {
+        en: "Contact",
+        es: "Contacto",
+        ru: "Контакты",
+      },
+      href: '/contacts'
     },
     courses: {
       translations: {

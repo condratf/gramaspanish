@@ -19,9 +19,9 @@ export default defineConfig({
       ru: "en",
       es: "en",
     },
-    routing: {
-      prefixDefaultLocale: true
-    }
+    // routing: {
+    //   prefixDefaultLocale: true
+    // }
   },
   vite: {
     resolve: {

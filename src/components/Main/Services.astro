@@ -1,0 +1,106 @@
+---
+import ServicesItem from "./ServicesItem.astro";
+
+const sections = Array.from({ length: 7 })
+  .fill({
+    imgSrc: "/assets/cat.jpg",
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ut odit. Quaerat voluptatum ut rem.",
+  })
+  .map((_, i) => ({
+    imgSrc: `/assets/photo_${i + 7}.jpg`,
+    text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ut odit. Quaerat voluptatum ut rem.",
+  }));
+---
+
+<div style="position: relative; margin-bottom:20rem; ">
+  <div class="custom-shape-divider-bottom-1716118163">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        class="shape-fill"></path>
+    </svg>
+  </div>
+
+  <div class="container">
+    {
+      sections.map(({ imgSrc, text }) => (
+        <ServicesItem imgSrc={imgSrc} text={text} />
+      ))
+    }
+  </div>
+
+  <div class="custom-shape-divider-top-1716129696">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        class="shape-fill"></path>
+    </svg>
+  </div>
+</div>
+
+<style lang="scss">
+  .container {
+    min-height: 100vh;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    // justify-content: center;
+    flex-wrap: wrap;
+    padding-top: 15rem;
+    padding-bottom: 10rem;
+    background-color: var(--header-bg);
+    padding-left: 2rem;
+  }
+
+  .custom-shape-divider-bottom-1716118163 {
+    position: absolute;
+    top: -213px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+  }
+
+  .custom-shape-divider-bottom-1716118163 svg {
+    position: relative;
+    display: block;
+    width: calc(152% + 1.3px);
+    height: 213px;
+  }
+
+  .custom-shape-divider-bottom-1716118163 .shape-fill {
+    fill: var(--header-bg);
+  }
+
+  .custom-shape-divider-top-1716129696 {
+    position: absolute;
+    bottom: -185px;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  .custom-shape-divider-top-1716129696 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 188px;
+    transform: rotateY(180deg);
+  }
+
+  .custom-shape-divider-top-1716129696 .shape-fill {
+    fill: var(--header-bg);
+  }
+</style>
