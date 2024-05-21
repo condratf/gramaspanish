@@ -7,7 +7,7 @@ const currLang = (Astro.currentLocale || "en") as Lang;
 const headerItems = getHeaderItems();
 ---
 
-<nav>
+<nav id="header">
   <div class="headerItems">
     {
       Object.values(headerItems).map(({ translations, href }) => (
@@ -33,8 +33,11 @@ const headerItems = getHeaderItems();
     padding-bottom: 1.5rem;
     display: flex;
     justify-content: space-between;
-    background-color: var(--header-bg);
-    box-shadow: 1px 7px 12px 2px rgba(0,0,0,0.12);
+    background-color: var(--primary);
+    box-shadow: 1px 7px 12px 2px rgba(0, 0, 0, 0.12);
+    position: fixed;
+    width: 100%;
+    z-index: 10;
   }
 
   .headerItems {
@@ -45,12 +48,13 @@ const headerItems = getHeaderItems();
 
   a {
     text-decoration: none;
-    color: var(--light-purple);
+    color: var(--font-color);
     cursor: pointer;
     font-size: 1.2rem;
-    opacity: 0.9;
     &:hover {
       opacity: 1;
+      color: var(--accent);
     }
+    transition: all 0.1s ease;
   }
 </style>

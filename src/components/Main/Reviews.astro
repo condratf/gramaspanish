@@ -8,12 +8,12 @@ const reviews = await getReviews();
 const title = {
   en: "Reviews",
   ru: "Отзывы",
-  es: "Opiniones"
-}[Astro.currentLocale as Lang]
+  es: "Opiniones",
+}[Astro.currentLocale as Lang];
 ---
 
 <div class="container">
-  <h1>{title}: </h1>
+  <h1>{title}:</h1>
   <ul class="reviews">
     {reviews.map((review) => <ReviewItem {...review} />)}
   </ul>
@@ -34,8 +34,11 @@ const title = {
     margin-bottom: 9rem;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    width: 80vw;
+    margin: 0 auto;
+    margin-bottom: 10rem;
     &::-webkit-scrollbar {
-      display: none; /* Safari and Chrome */
+      display: none;
     }
   }
 </style>

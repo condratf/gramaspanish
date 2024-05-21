@@ -12,7 +12,7 @@ export function getCurrLang(Astro: AstroGlobal): Lang {
 export function getPagesNames(): Array<string> {
   const directoryPath = './src/pages/[lang]'
   let fileList: Array<string> = []
-  
+
   fs.readdir(directoryPath, (err, files) => {
     if (err) {
       throw Error('Unable to scan directory: ' + err)
@@ -30,3 +30,16 @@ export function getPagesNames(): Array<string> {
   return fileList
 }
 
+export function arrayRange(start: number = 0, stop: number = 10, step: number = 1): number[] {
+  return Array.from(
+    { length: (stop - start) / step + 1 },
+    (_, index) => start + index * step
+  );
+}
+
+export function getRatingStars(rating: number) {
+  return arrayRange(1, 5).map(v => {
+    if (v < rating + 1) return (`🌟`)
+    return (`✰`)
+  })
+}

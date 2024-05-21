@@ -23,7 +23,7 @@ const { imgSrc, text } = Astro.props;
     border-radius: 1rem;
     display: flex;
     align-items: center;
-    background: #38434f;
+    background: #6c839c22;
     color: white;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
@@ -36,6 +36,17 @@ const { imgSrc, text } = Astro.props;
 
     img {
       border-radius: 1rem;
+    }
+
+    @media (max-width: 347px) {
+      width: 300px;
+      img {
+        width: 125px;
+        height: 125px;
+      }
+      p {
+        font-size: 0.7rem;
+      }
     }
   }
 </style>

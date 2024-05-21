@@ -54,12 +54,22 @@ const sections = Array.from({ length: 7 })
     display: flex;
     gap: 3rem;
     align-items: center;
-    // justify-content: center;
     flex-wrap: wrap;
     padding-top: 15rem;
     padding-bottom: 10rem;
-    background-color: var(--header-bg);
+    background-color: var(--complimentary);
     padding-left: 2rem;
+
+    @media (max-width: 500px) {
+      padding-top: 10rem;
+      gap: 1rem;
+      padding-left: 0.7rem;
+      padding-bottom: 5.9rem;
+    }
+
+    @media (max-width: 1630px) {
+      justify-content: center;
+    }
   }
 
   .custom-shape-divider-bottom-1716118163 {
@@ -80,7 +90,7 @@ const sections = Array.from({ length: 7 })
   }
 
   .custom-shape-divider-bottom-1716118163 .shape-fill {
-    fill: var(--header-bg);
+    fill: var(--complimentary);
   }
 
   .custom-shape-divider-top-1716129696 {
@@ -101,6 +111,6 @@ const sections = Array.from({ length: 7 })
   }
 
   .custom-shape-divider-top-1716129696 .shape-fill {
-    fill: var(--header-bg);
+    fill: var(--complimentary);
   }
 </style>

@@ -1,33 +1,16 @@
 ---
 import MainPageContent from "./MainPageContent.astro";
-import { db, Text, eq } from "astro:db";
-import { getCurrLang } from "src/helpers";
-import { Lang } from "src/types";
 import Services from "./Services.astro";
 import Reviews from "./Reviews.astro";
 
-const mainText = (
-  await db.selectDistinct().from(Text).where(eq(Text.name, "main"))
-)[0];
-
-const content = {
-  [Lang.en]: mainText.content,
-  [Lang.ru]: mainText.contentRu,
-  [Lang.es]: mainText.contentEs,
-}[getCurrLang(Astro)];
 ---
 
 <div class="container">
   <MainPageContent />
 
-  <p class="mainText">
-    {content}
-  </p>
-
   <Services />
 
-  <Reviews />
-
+  <Reviews /> 
 </div>
 
 <style lang="scss">
@@ -38,12 +21,5 @@ const content = {
     min-height: 590px;
     overflow: hidden;
     padding-top: 5rem;
-  }
-
-  .mainText {
-    padding: 1rem;
-    text-align: center;
-    font-size: 5rem;
-    margin-bottom: 23rem;
   }
 </style>
