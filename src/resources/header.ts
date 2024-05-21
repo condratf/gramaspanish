@@ -28,14 +28,6 @@ export const getHeaderItems = () => {
       },
       href: '/contacts'
     },
-    courses: {
-      translations: {
-        en: "Courses",
-        es: "Cursos",
-        ru: "Курсы",
-      },
-      href: '/courses'
-    }
   };
 }
 

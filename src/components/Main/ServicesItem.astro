@@ -26,6 +26,13 @@ const { imgSrc, text } = Astro.props;
     background: #38434f;
     color: white;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-0.07rem);
+    }
 
     img {
       border-radius: 1rem;
