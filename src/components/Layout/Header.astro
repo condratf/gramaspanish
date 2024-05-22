@@ -1,5 +1,5 @@
 ---
-import ChangeLang from "src/components/shared/ChangeLang.astro";
+import ChangeLang from "src/components/shared/ChangeLang/ChangeLang.astro";
 import { getHeaderItems } from "src/resources/header";
 import type { Lang } from "src/types";
 
@@ -30,7 +30,6 @@ const headerItems = getHeaderItems();
 <style lang="scss">
   nav {
     padding: 1.3rem;
-    padding-bottom: 1.5rem;
     display: flex;
     justify-content: space-between;
     background-color: var(--primary);

@@ -2,7 +2,7 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { getHeaderItems } from "src/resources/header";
 import type { Lang } from "src/types";
-import ChangeLang from "../shared/ChangeLang.astro";
+import ChangeLang from "../shared/ChangeLang/ChangeLang.astro";
 
 const locale = (Astro.currentLocale || "en") as Lang;
 const headerItems = getHeaderItems();
@@ -58,9 +58,5 @@ const headerItems = getHeaderItems();
       color: var(--accent);
     }
     transition: all 0.1s ease;
-  }
-
-  .changeLang {
-    align-self: flex-end;
   }
 </style>

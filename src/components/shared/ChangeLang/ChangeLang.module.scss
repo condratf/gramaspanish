@@ -1,0 +1,55 @@
+.dropdown {
+  position: relative;
+  scale: 1.3;
+}
+
+.dropdown-button {
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.dropdown-menu {
+  display: flex;
+  position: absolute;
+  z-index: 1;
+  // margin-left: 0.12rem;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s;
+    opacity: 0.92;
+  
+    @media only screen and (max-width: 767px) {
+      zoom: 0.8;
+    }
+  
+    span {
+      opacity: 0;
+      position: absolute;
+      text-decoration: none;
+      z-index: 2;
+      font-weight: 500;
+      color: rgb(0, 0, 0);
+      margin-top: -1.8rem;
+      transition: all 0.2s ease;
+    }
+    img {
+      opacity: 0.8;
+    }
+  
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}
+

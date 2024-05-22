@@ -1,9 +1,9 @@
 ---
 import ServicesItem from "./ServicesItem.astro";
 
-const sections = Array.from({ length: 7 })
+const sections = Array.from({ length: 4 })
   .fill({
-    imgSrc: "/assets/cat.jpg",
+    imgSrc: "",
     text: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus, ut odit. Quaerat voluptatum ut rem.",
   })
   .map((_, i) => ({
@@ -26,12 +26,14 @@ const sections = Array.from({ length: 7 })
     </svg>
   </div>
 
-  <div class="container">
-    {
-      sections.map(({ imgSrc, text }) => (
-        <ServicesItem imgSrc={imgSrc} text={text} />
-      ))
-    }
+  <div class="wrapper-container">
+    <div class="container">
+      {
+        sections.map(({ imgSrc, text }) => (
+          <ServicesItem imgSrc={imgSrc} text={text} />
+        ))
+      }
+    </div>
   </div>
 
   <div class="custom-shape-divider-top-1716129696">
@@ -49,26 +51,26 @@ const sections = Array.from({ length: 7 })
 </div>
 
 <style lang="scss">
+  .wrapper-container {
+    background-color: var(--complimentary);
+  }
+
   .container {
-    min-height: 100vh;
+    max-width: 1300px;
+    margin: 0 auto;
+    background-color: var(--complimentary);
+    padding: 5rem 0;
     display: flex;
-    gap: 3rem;
+    gap: 2rem;
     align-items: center;
     flex-wrap: wrap;
-    padding-top: 15rem;
-    padding-bottom: 10rem;
-    background-color: var(--complimentary);
-    padding-left: 2rem;
+    justify-content: center;
 
     @media (max-width: 500px) {
       padding-top: 10rem;
       gap: 1rem;
       padding-left: 0.7rem;
       padding-bottom: 5.9rem;
-    }
-
-    @media (max-width: 1630px) {
-      justify-content: center;
     }
   }
 

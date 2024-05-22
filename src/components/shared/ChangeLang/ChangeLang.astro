@@ -1,0 +1,31 @@
+---
+import { ChangeLangDropdown } from "../ChangeLang/ChangeLangDropdown.tsx";
+import type { Lang } from "src/types";
+
+const preparedPathName = Astro.url.pathname.replace(/\/en|\/es|\/ru/g, "");
+const locale = (Astro.currentLocale || "en") as Lang;
+---
+
+<div
+  class="changeLang"
+  aria-label="language | lengua | язык"
+  title="language | lengua | язык"
+  role="group"
+>
+  <ChangeLangDropdown
+    preparedPathName={preparedPathName}
+    locale={locale}
+    client:load
+  />
+</div>
+
+<style lang="scss">
+  .changeLang {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: flex-start;
+    zoom: 0.8;
+    align-items: center;
+    margin-bottom: -0.2rem;
+  }
+</style>
