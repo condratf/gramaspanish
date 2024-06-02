@@ -1,9 +1,6 @@
 ---
-import { getReviews } from "src/resources/reviews";
-import ReviewItem from "./ReviewItem.astro";
 import type { Lang } from "src/types";
-
-const reviews = await getReviews();
+import ReviewsList from "./ReviewsList.astro";
 
 const title = {
   en: "Reviews",
@@ -13,9 +10,9 @@ const title = {
 ---
 
 <div class="container">
-  <h1>{title}:</h1>
+  <h1>{title}</h1>
   <ul class="reviews">
-    {reviews.map((review) => <ReviewItem {...review} />)}
+    <ReviewsList />
   </ul>
 </div>
 

@@ -6,6 +6,11 @@ import Footer from "./Footer.astro";
 import { getCurrLang } from "src/helpers";
 
 const currLang = getCurrLang(Astro);
+interface Props {
+  paddingTop?: string
+}
+
+const pT = Astro.props.paddingTop || '0'
 ---
 
 <ViewTransitions />
@@ -65,7 +70,7 @@ const currLang = getCurrLang(Astro);
   </head>
   <body>
     <Header currLang={currLang} />
-    <div class="content">
+    <div class="content" style=`padding-top: ${pT}`>
       <slot />
     </div>
     <Footer />

@@ -1,0 +1,10 @@
+---
+import { getReviews } from "src/resources/reviews";
+import ReviewItem from "./ReviewItem.astro";
+
+const reviews = getReviews();
+---
+
+<>
+  {reviews.map((review, ix) => <ReviewItem item={review} />)}
+</>

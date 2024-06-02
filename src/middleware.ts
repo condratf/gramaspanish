@@ -1,8 +1,8 @@
 import { lucia } from "./lib/auth";
 import { verifyRequestOrigin } from "lucia";
-import { defineMiddleware } from "astro:middleware";
+import { sequence, defineMiddleware } from "astro:middleware";
 
-export const onRequest = defineMiddleware(async (context, next) => {
+const authMiddleware = defineMiddleware(async (context, next) => {
 	if (!context.url.pathname.startsWith("/admin/")) return next()
 
 	if (context.request.method !== "GET") {
@@ -35,3 +35,62 @@ export const onRequest = defineMiddleware(async (context, next) => {
 	context.locals.user = user;
 	return next();
 });
+
+// type SuspendedChunk = [id: number, chunk: string]
+
+// const suspenseMiddleware = defineMiddleware(async (context, next) => {
+// 	const response = await next();
+
+// 	if (!response.headers.get('content-type')?.startsWith("text/html")) {
+// 		return response
+// 	}
+
+// 	let streamController:ReadableStreamDefaultController<SuspendedChunk>
+
+// 	const stream = new ReadableStream({
+// 		start: (controller) => {
+// 			streamController = controller
+// 		},
+// 	})
+
+// 	const pending = new Set<Promise<string>>();
+
+// 	context.locals.suspend = (promise) => {
+// 		const id = pending.size;
+// 		pending.add(promise);
+// 		promise.then((chunk) => {
+// 			pending.delete(promise);
+// 			streamController.enqueue([id, chunk]);
+// 			if (pending.size === 0) {
+// 				streamController.close();
+// 			}
+// 		});
+// 		return id
+// 	}
+
+// 	async function* render() {
+// 		//@ts-expect-error async iterable
+// 		for await (const chunk of response.body) {
+// 			yield chunk
+// 		}
+
+// 		//@ts-expect-error async iterable
+// 		for await (const [id, chunk] of stream) {
+// 			yield `<template data-suspense="${id}">${chunk}</template>
+// 				<script>
+// 					(() => {
+// 						const template = document.querySelector('template[data-suspense="${id}"]');
+// 						const fallback = document.querySelector('[data-fallback="${id}"]');
+// 						fallback.replaceWith(template.content);
+// 					})()
+// 				</script>
+// 			`
+// 		}
+// 	}
+
+// 	//@ts-expect-error async iterable
+// 	return new Response(render(), { headers: response.headers })
+// })
+
+
+export const onRequest = sequence(authMiddleware)

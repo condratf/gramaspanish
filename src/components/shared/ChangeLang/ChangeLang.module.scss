@@ -1,6 +1,10 @@
 .dropdown {
   position: relative;
   scale: 1.3;
+
+  img {
+    border: 1px solid rgba(0, 0, 0, 0.231);
+  }
 }
 
 .dropdown-button {

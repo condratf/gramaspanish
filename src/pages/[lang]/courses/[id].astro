@@ -1,23 +1,21 @@
 ---
 import Course from "src/components/Courses/Course.astro";
 import Layout from "src/components/Layout/Layout.astro";
-import { getRelativeLocaleUrl } from "astro:i18n";
-import { getCurrLang } from "src/helpers";
 import { getCourse } from "src/resources/courses";
 
 const { id } = Astro.params;
-const currLang = getCurrLang(Astro);
+
 const course = await getCourse(id);
 
 if (!course) {
-  return Astro.redirect(getRelativeLocaleUrl(currLang, "/courses"));
+  return Astro.redirect(`/${(Astro.currentLocale || "en")}`);
 }
 ---
 
 {
   course && (
-    <Layout>
+    <Layout paddingTop="5rem">
       <Course {...course} />
     </Layout>
-  )
+  ) || <></>
 }
