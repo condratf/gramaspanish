@@ -9,12 +9,21 @@ interface Props {
 const { imgSrc, text } = Astro.props;
 ---
 
-<section>
-  <Image width={200} height={200} alt="section img" src={imgSrc} />
-  <p>{text}</p>
-</section>
+<a href=`/${Astro.currentLocale || 'en'}/courses/2`>
+  <section>
+    <Image width={200} height={200} alt="section img" src={imgSrc} />
+    <div>
+      <p>{text}</p>
+      <button>participate</button>
+    </div>
+  </section>
+</a>
 
 <style lang="scss">
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
   section {
     gap: 1.2rem;
     padding: 1rem;
@@ -23,30 +32,43 @@ const { imgSrc, text } = Astro.props;
     border-radius: 1rem;
     display: flex;
     align-items: center;
-    background: #caafaf25;
-    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.07);
+    // background: #caafaf25;
+    // box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.07);
     cursor: pointer;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.2s ease-in-out;
 
     &:hover,
     &:focus {
-      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-      transform: translateY(-0.07rem);
+      box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+      transform: translateY(-0.05rem);
+    }
+
+    @media (max-width: 500px) {
+      scale: 0.8;
+    }
+    @media (max-width: 330px) {
+      scale: 0.7;
     }
 
     img {
       border-radius: 1rem;
     }
 
-    @media (max-width: 347px) {
-      width: 300px;
-      img {
-        width: 125px;
-        height: 125px;
-      }
-      p {
-        font-size: 0.7rem;
-      }
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    button {
+      // background-color: var(--accent2);
+      padding: 0.5rem;
+      border-radius: 0.2rem;
+      color: var(--complimentary2);
+      border: none;
+      outline: none;
+      text-transform: uppercase;
+      cursor: pointer;
     }
   }
 </style>

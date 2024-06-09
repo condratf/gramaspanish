@@ -3,14 +3,19 @@ import { getRatingStars } from "src/helpers";
 import type { Review } from "src/resources/reviews";
 
 interface Props {
-  item: Promise<Review>
+  item: Promise<Review>;
 }
 
 // const { content, name, rating, imgSrc } = await Astro.props.item;
 ---
 
 <div class="container">
-  <img alt="alumno" src={(await Astro.props.item).imgSrc} width="190" height="190" />
+  <img
+    alt="alumno"
+    src={(await Astro.props.item).imgSrc}
+    width="190"
+    height="190"
+  />
   <div>
     <h3>{(await Astro.props.item).name}</h3>
     <p>
@@ -34,7 +39,20 @@ interface Props {
     border-radius: 1rem;
     padding: 0.5rem;
     min-width: 25rem;
+    max-width: 27.5rem;
     margin-bottom: 0.9rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.89rem;
+    }
 
     @media (max-width: 500px) {
       min-width: 23rem;
@@ -43,7 +61,9 @@ interface Props {
 
     img {
       border-radius: 0.5rem;
-      max-width: 150px;
+      max-width: 125px;
+      height: auto;
+      object-fit: contain;
     }
 
     @media (max-width: 380px) {

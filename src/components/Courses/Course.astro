@@ -37,11 +37,15 @@ const { title, description, quantity, price } = Astro.props;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1rem;
+    gap: 2rem;
 
     button {
       cursor: pointer;
     }
+  }
+
+  h2 {
+    width: 100%;
   }
 
   .inner {
@@ -74,6 +78,13 @@ const { title, description, quantity, price } = Astro.props;
         border: none;
         outline: none;
         text-transform: uppercase;
+        transition: all 0.2s ease-in-out;
+        &:hover,
+        &:focus {
+          box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+          transform: translateY(-0.03rem);
+        }
+        max-width: 320px;
       }
 
       .price {

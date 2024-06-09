@@ -33,7 +33,7 @@ const headerItems = getHeaderItems();
     display: flex;
     justify-content: space-between;
     background-color: var(--primary);
-    box-shadow: 1px 7px 12px 2px rgba(0, 0, 0, 0.09);
+    box-shadow: 1px 7px 12px 2px rgba(0, 0, 0, 0.03);
     position: fixed;
     width: 100%;
     z-index: 10;
@@ -47,12 +47,13 @@ const headerItems = getHeaderItems();
 
   a {
     text-decoration: none;
+    text-transform: uppercase;
     color: var(--font-color);
     cursor: pointer;
-    font-size: 1.2rem;
-    &:hover {
+    font-size: 1.05rem;
+    &:hover { 
       opacity: 1;
-      color: var(--accent);
+      color: var(--accent3);
     }
     transition: all 0.1s ease;
   }

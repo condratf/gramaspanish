@@ -7,25 +7,25 @@ export const getHeaderItems = () => {
   return {
     home: {
       translations: {
-        en: "Home",
-        es: "Inicio",
-        ru: "Главная",
+        en: "home",
+        es: "inicio",
+        ru: "главная",
       },
       href: '/'
     },
     about: {
       translations: {
-        en: "About",
-        es: "Nosotros",
-        ru: "О нас",
+        en: "about",
+        es: "nosotros",
+        ru: "о нас",
       },
       href: '/about'
     },
     contacts: {
       translations: {
-        en: "Contact",
-        es: "Contacto",
-        ru: "Контакты",
+        en: "contact",
+        es: "contacto",
+        ru: "контакты",
       },
       href: '/contacts'
     },
