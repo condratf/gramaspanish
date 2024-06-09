@@ -1,0 +1,60 @@
+---
+import Layout from "src/components/Layout/Layout.astro";
+---
+
+<Layout paddingTop="5rem">
+  <div class="wrapper">
+    <h1>Purchase the course</h1>
+
+    <div id="checkout" data-origin={Astro.url.origin} />
+  </div>
+</Layout>
+
+<style>
+  .wrapper {
+    padding: 1rem;
+  }
+</style>
+
+<script>
+  import { loadStripe } from "@stripe/stripe-js";
+
+  async function fetchStripeData() {
+    const origin =
+      //@ts-expect-error
+      document.querySelector("#checkout")?.dataset?.origin ||
+      window.location.origin ||
+      "";
+
+    const response = await fetch("/api/stripe", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        origin: origin,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch Stripe data");
+    }
+
+    const data = await response.json();
+    return data;
+  }
+
+  (async () => {
+    const { secret: clientSecret, sessionKey: stripeKey } =
+      await fetchStripeData();
+
+    const stripe = await loadStripe(stripeKey);
+
+    if (stripe) {
+      const checkout = await stripe.initEmbeddedCheckout({
+        fetchClientSecret: () => new Promise((res) => res(clientSecret)),
+      });
+      checkout.mount("#checkout");
+    }
+  })();
+</script>

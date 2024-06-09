@@ -25,7 +25,9 @@ const { title, description, quantity, price } = Astro.props;
 
       <span class="price">{price}</span>
 
-      <button> purchase course </button>
+      <a href=`/${Astro.currentLocale || 'en'}/checkout`>
+        <button> purchase course </button>
+      </a>
     </div>
   </div>
 </div>
